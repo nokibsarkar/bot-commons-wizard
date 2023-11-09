@@ -9,11 +9,12 @@ const ImageSearcher = ({ setImageURL, defaultImageURL, fieldName = "Select Image
         const height = previewRef?.current?.clientHeight;
         console.log(width, height)
         const base = "https://commons.wikimedia.org/w/api.php"
+        const wikiURLPattern = /^ *(?:https:\/\/(?:commons(?:\.m)?\.wikimedia|.+?\.(:?m\.)?wikipedia)\.org\/wiki\/)?[Ff]ile:/
         const params = new URLSearchParams({
             "action": "query",
             "format": "json",
             "prop": "imageinfo",
-            "titles": "File:" + imageURL?.replace(/^[Ff]ile:/, ""),
+            "titles": "File:" + imageURL?.replace(wikiURLPattern, ""),
             "formatversion": "2",
             "iiurlwidth": width,
             "iiurlheight": height,
@@ -41,7 +42,7 @@ const ImageSearcher = ({ setImageURL, defaultImageURL, fieldName = "Select Image
                 <input
                     className="border border-gray-400 rounded-lg px-4 py-2 m-2"
                     type="text"
-                    placeholder="Image URL"
+                    placeholder="Commons File Name"
                     value={imageURL}
                     onChange={(e) => setLocalImageURL(e.target.value)}
                 />

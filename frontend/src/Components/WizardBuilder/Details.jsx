@@ -1,6 +1,14 @@
 import ImageSearcher from "./ImageSearcher";
 
 const CampaignDetails = ({ state, dispatch }) => {
+    const readyToGotNext = (
+        state?.name?.length > 0 &&
+        state?.image?.length > 0 &&
+        state?.startDate?.length > 0 &&
+        state?.endDate?.length > 0 &&
+        state?.description?.length > 0
+    )
+    console.log(readyToGotNext)
     return <form>
         <div className="flex flex-col justify-center items-center">
             <input
@@ -29,7 +37,9 @@ const CampaignDetails = ({ state, dispatch }) => {
                 value={state.description}
                 onChange={(e) => dispatch({ type: "description", payload: e.target.value })}
             />
-            <button type="button" className="border w-fit border-gray-400 rounded-lg px-4 py-2 m-0" onClick={() => dispatch({ type: "step", payload: 1 })}>Next</button>
+            <button type="button" disabled={!readyToGotNext} className="border disabled:bg-opacity-70 text-white bg-green-700 w-1/2 border-gray-400 rounded-lg px-4 py-2 m-2" onClick={() => dispatch({ type: "step", payload: 1 })}>
+                Add Predefined Parameters
+                </button>
         </div>
     </form>
 };

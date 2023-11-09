@@ -1,18 +1,23 @@
 import { useReducer, useState } from "react";
 import CampaignDetails from "./Details";
 import CampaignLicense from "./License";
+import CampaignPredefinedParameters from "./Predefined";
+import CampaignPreview from "./Preview";
 const initialState = {
     step: 0,
     name: "Campaign Name",
     description: "Campaign Description",
     startDate: "",
     endDate: "",
+    prefillSummary : "",
     image: "https://via.placeholder.com/220x220",
     banner: "https://via.placeholder.com/220x220",
     tutorialFile: "",
     tutorialLink: "",
     licenseOnlyAuthor: false,
-    licenseCustom: true,
+    licenseCustom: false,
+    licenseCustomName: "",
+    licenseCustomTemplate : "",
     licenses: [
         {
             name: "Creative Commons Attribution-ShareAlike 4.0 International",
@@ -88,6 +93,8 @@ const reducer = (state, action) => {
             return { ...state, licenses: action.payload };
         case "categories":
             return { ...state, categories: action.payload };
+        case "prefillSummary":
+            return { ...state, prefillSummary: action.payload };
         case "step":
             {
                 if (typeof action.payload !== "number")
@@ -129,18 +136,18 @@ const StageSelector = (step, props) => {
         case 0:
             return <CampaignDetails {...props} />;
         case 1:
+            return <CampaignPredefinedParameters {...props} />;
+        case 2:
             return <CampaignLicense {...props} />;
-        // case 2:
-        //     return <CampaignRewards {...props} />;
-        // case 3:
-        //     return <CampaignPreview {...props} />;
+        case 3:
+            return <CampaignPreview {...props} />;
         default:
             return <></>;
     }
 }
 
 const WizardBuilder = () => {
-    const steps = ["Campaign Details", "Campaign Images", "Campaign Rewards", "Campaign Preview"];
+    const steps = ["Campaign Details", "Predefined Paramters", "Campaign Licenses", "Campaign Preview", "Campaign Result"];
     const [state, dispatch] = useReducer(reducer, initialState);
     const [step, setStep] = [state.step, (step) => dispatch({ type: "step", payload: step })];
 
