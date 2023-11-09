@@ -18,7 +18,7 @@ const CampaignDetails = ({ state, dispatch }) => {
                 value={state.name}
                 onChange={(e) => dispatch({ type: "name", payload: e.target.value })}
             />
-            <ImageSearcher setImageURL={(url) => dispatch({ type: "image", payload: url })} defaultImageURL={state.image} />
+            <ImageSearcher fieldName="Campaign Banner" setImageURL={(url) => dispatch({ type: "image", payload: url })} defaultImageURL={state.image} />
             <fieldset className="flex flex-row  border-solid border-gray-600 border p-5">
                 <legend className="text-lg">Campaign Duration</legend>
                 <input
