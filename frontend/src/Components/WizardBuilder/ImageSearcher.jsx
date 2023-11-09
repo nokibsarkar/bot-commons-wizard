@@ -34,11 +34,7 @@ const ImageSearcher = ({ setImageURL, defaultImageURL, fieldName = "Select Image
         }
     }, [imageURL, defaultImageURL, previewRef]);
     return (
-        <fieldset className="flex flex-col items-center border-solid border-gray-600 p-5" style={
-            {
-                borderWidth: "1px",
-            }
-        }>
+        <fieldset className="flex flex-col items-center border-solid border border-gray-600 p-5">
             <legend className="text-lg">{fieldName}</legend>
             <img ref={previewRef} src={absoluteImageURL} alt="Campaign Image" className="w-44 h-auto" />
             <div className="flex flex-row justify-center items-center">
