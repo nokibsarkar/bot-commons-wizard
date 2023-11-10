@@ -8,7 +8,6 @@ const CampaignDetails = ({ state, dispatch }) => {
         state?.endDate?.length > 0 &&
         state?.description?.length > 0
     )
-    console.log(readyToGotNext)
     return <form>
         <div className="flex flex-col justify-center items-center">
             <input
