@@ -1,22 +1,26 @@
 import { useCallback } from "react";
 
 const CampaignPreview = ({ state, dispatch }) => {
+
+    const configJSON = JSON.stringify(state, null, 4);
     const save = useCallback(async () => {
-        try {
-            const response = await fetch("/api/campaigns", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(state)
-            })
-            const json = await response.json();
-            dispatch({ type: "step", payload: 4 });
-            dispatch({ type: "result", payload: json });
-            console.log(json);
-        } catch (e) {
-            console.log(e);
-        }
+        // try {
+        //     const response = await fetch("/api/campaigns", {
+        //         method: "POST",
+        //         headers: {
+        //             "Content-Type": "application/json"
+        //         },
+        //         body: JSON.stringify(state)
+        //     })
+        //     const json = await response.json();
+        //     dispatch({ type: "step", payload: 4 });
+        //     dispatch({ type: "result", payload: json });
+        //     console.log(json);
+        // } catch (e) {
+        //     console.log(e);
+        // }
+        dispatch({ type: "step", payload: 5 });
+
     }, []);
     return (
         <fieldset className="flex flex-col justify-center items-center border p-4">
@@ -26,7 +30,7 @@ const CampaignPreview = ({ state, dispatch }) => {
                 {state.name}
             </h1>
             <p className="text-lg font-semibold">
-                {state.description}
+                {state.config.description}
             </p>
             <button
                 type="button"
