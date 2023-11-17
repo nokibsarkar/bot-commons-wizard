@@ -317,14 +317,14 @@ const reducerConfig = (state, action) => {
 
 const Stepper = ({ steps, step, setStep }) => {
     return (
-        <div className="flex flex-row justify-evenly w-full p-2 cursor-pointer">
+        <div className="flex flex-row justify-evenly w-full p-2 cursor-pointer" data-testid="stepper">
             {steps.map((s, i) => {
                 const isCompleted = i < step;
                 const isActive = i === step;
                 const divBg = isActive ? "bg-blue-800" : isCompleted ? "bg-blue-500" : "bg-blue-200";
                 const indexBg = isActive ? "bg-violet-900" : isCompleted ? "bg-violet-500" : "bg-violet-200";
                 return (
-                    <div key={i} className={`${divBg} flex flex-col justify-center items-center text-center rounded-lg p-2  text-white`} onClick={() => setStep(i)}>
+                    <div key={i} className={`${divBg} flex flex-col justify-center items-center text-center rounded-lg p-2  text-white`} onClick={() => setStep(i)} data-testid={`step-${i}`} data-selected={isActive} data-completed={isCompleted}>
                         <span className={`text-white rounded-full ${indexBg} inline-block w-8`}>{i + 1}</span>
                         <span>{s}</span>
                     </div>

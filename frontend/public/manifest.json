@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Wizard Builder",
+  "name": "Wikimedia commons Campaign Wizard Builder by Nokib Sarkar",
+  "author": "Nokib Sarkar",
   "icons": [
     {
       "src": "favicon.ico",

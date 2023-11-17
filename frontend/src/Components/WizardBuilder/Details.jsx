@@ -12,14 +12,15 @@ const CampaignDetails = ({ state, dispatch }) => {
     )
     return <form>
         <div className="flex flex-col justify-center items-center">
-            <fieldset className="flex flex-col items-center border-solid border border-gray-600 p-5">
-                <legend className="text-lg">Campaign Name</legend>
-                <p className="text-black">This is the name of the campaign. It will be used in the title of the campaign page.</p>
+            <fieldset data-testid="campaign-name" className="flex flex-col items-center border-solid border border-gray-600 p-5">
+                <legend className="text-lg" data-testid="campaign-name-legend">Campaign Name</legend>
+                <p className="text-black" data-testid="campaign-name-helper">This is the name of the campaign. It will be used in the title of the campaign page.</p>
                 <input
                     className="border border-gray-400 rounded-lg px-4 py-2 m-2"
                     type="text"
                     placeholder="Campaign Name"
                     value={state.name}
+                    data-testid="campaign-name-input"
                     onChange={(e) => dispatch({ type: "name", payload: e.target.value })}
                 />
             </fieldset>
