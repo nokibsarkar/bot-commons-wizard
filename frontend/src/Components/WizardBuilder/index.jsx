@@ -11,6 +11,7 @@ const defaultConfig = {
     name : "Campaign Name",
     config: {
         "debug": false,
+        enabled : true,
         title : "Campaign Name",
         "enableLicensePreference": true,
         "fileExtensions": ["png", "gif", "jpg", "jpeg", "tiff", "tif", "xcf", "pdf", "mid", "ogg", "ogv", "svg", "djvu", "ogg", "ogv", "oga", "flac", "wav", "webm"],
