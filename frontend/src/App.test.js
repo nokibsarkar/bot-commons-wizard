@@ -1,21 +1,25 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import App from './App';
 import { act } from 'react-dom/test-utils';
-
+const setup = () => {
+  const utils = render(<App />)
+  const stepper = utils.getByTestId("stepper");
+  return {
+    stepper,
+    ...utils,
+  }
+}
 test('renders without crashing', () => {
   render(<App />);
 });
 test("Render Stepper and clicks all of them ", async () => {
-  render(<App />);
-  const stepper = screen.getByTestId("stepper");
+  const {stepper} = setup();
   expect(stepper).toBeInTheDocument();
   for(let i = 0; i < 6; i++){
     const step = screen.getByTestId(`step-${i}`);
     expect(step).toBeInTheDocument();
     expect(step).toHaveClass("flex flex-col justify-center items-center text-center rounded-lg p-2 text-white");
-    act(() => {
-      step.click();
-    });
+    act(() => step.click()); // Click on the step
     expect(step).toHaveAttribute("data-selected", "true");
     for (let j = 0; j < 6; j++) {
       if(j !== i){
@@ -26,9 +30,10 @@ test("Render Stepper and clicks all of them ", async () => {
   }
 });
 test("Render Campaign Name Input", async () => {
-  render(<App />);
-  const campaignDetailsStep = screen.getByTestId("step-0");
+  const {stepper} = setup();
+  const campaignDetailsStep = stepper.children[0];
   expect(campaignDetailsStep).toBeInTheDocument();
+  act(() => campaignDetailsStep.click()); // Click on the step
   expect(campaignDetailsStep).toHaveAttribute("data-selected", "true");
   expect(campaignDetailsStep).toHaveClass("bg-blue-800");
   expect(campaignDetailsStep).not.toHaveClass("bg-blue-500");
@@ -42,11 +47,11 @@ test("Render Campaign Name Input", async () => {
   const campaignNameInput = screen.getByTestId("campaign-name-input");
   expect(campaignNameInput).toBeInTheDocument();
   expect(campaignNameInput).toHaveAttribute("type", "text");
-  campaignNameInput.focus();
+  act(() => campaignNameInput.focus())
   expect(campaignNameInput).toHaveFocus();
-  campaignNameInput.value = "Test Campaign";
+  fireEvent.change(campaignNameInput, { target: { value: "Test Campaign" } });
   expect(campaignNameInput.value).toBe("Test Campaign");
-  campaignNameInput.blur();
+  act(() => campaignNameInput.blur());
   expect(campaignNameInput).not.toHaveFocus();
 });
 test("Render Campaign Title Input", async () => {
