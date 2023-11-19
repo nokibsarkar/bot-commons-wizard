@@ -60,11 +60,11 @@ build_frontend (){
         cp -r $INITIAL_STATIC_FOLDER/* $TARGET_STATIC_PATH
     fi
     # Move the build static files to static directory
-    mv $SOURCE_STATIC_PATH/* $TARGET_STATIC_PATH
-    if [ -d "$INITIAL_STATIC_FOLDER" ]; then
-        cp -r $INITIAL_STATIC_FOLDER/* $TARGET_STATIC_PATH
-    fi
-    rm -rf $SOURCE_STATIC_PATH
+    # mv $SOURCE_STATIC_PATH/* $TARGET_STATIC_PATH
+    # if [ -d "$INITIAL_STATIC_FOLDER" ]; then
+    #     cp -r $INITIAL_STATIC_FOLDER/* $TARGET_STATIC_PATH
+    # fi
+    # rm -rf $SOURCE_STATIC_PATH
     # Move all the files from frontend/build to static directory
     mv -f $BUILD_PATH/* $TARGET_STATIC_PATH
     cd $CURRENT_PATH
@@ -111,6 +111,6 @@ elif [ "$CMD" == "all" ]; then
     build_frontend
     package
 else
-    echo "Please provide a command: setup, landing_page, frontend , package, all"
+    echo "Please provide a command: setup, frontend , package, all"
 fi
 
