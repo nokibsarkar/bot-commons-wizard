@@ -41,6 +41,181 @@ const defaultConfig = {
             "categories": [],
             "description": ""
         },
+        "licenses": {
+            "cc-by-sa-3.0": {
+                "msg": "mwe-upwiz-license-cc-by-sa-3.0",
+                "icons": ["cc-by", "cc-sa"],
+                "url": "//creativecommons.org/licenses/by-sa/3.0/",
+                "languageCodePrefix": "deed."
+            },
+            "cc-by-sa-3.0-gfdl": {
+                "msg": "mwe-upwiz-license-cc-by-sa-3.0-gfdl",
+                "templates": ["GFDL", "cc-by-sa-3.0"],
+                "icons": ["cc-by", "cc-sa"]
+            },
+            "cc-by-sa-3.0-at": {
+                "msg": "mwe-upwiz-license-cc-by-sa-3.0-at",
+                "templates": ["cc-by-sa-3.0-at"],
+                "icons": ["cc-by", "cc-sa"],
+                "url": "//creativecommons.org/licenses/by-sa/3.0/at/",
+                "languageCodePrefix": "deed."
+            },
+            "cc-by-sa-3.0-de": {
+                "msg": "mwe-upwiz-license-cc-by-sa-3.0-de",
+                "templates": ["cc-by-sa-3.0-de"],
+                "icons": ["cc-by", "cc-sa"],
+                "url": "//creativecommons.org/licenses/by-sa/3.0/de/",
+                "languageCodePrefix": "deed."
+            },
+            "cc-by-sa-3.0-ee": {
+                "msg": "mwe-upwiz-license-cc-by-sa-3.0-ee",
+                "templates": ["cc-by-sa-3.0-ee"],
+                "icons": ["cc-by", "cc-sa"],
+                "url": "//creativecommons.org/licenses/by-sa/3.0/ee/",
+                "languageCodePrefix": "deed."
+            },
+            "cc-by-sa-3.0-es": {
+                "msg": "mwe-upwiz-license-cc-by-sa-3.0-es",
+                "templates": ["cc-by-sa-3.0-es"],
+                "icons": ["cc-by", "cc-sa"],
+                "url": "//creativecommons.org/licenses/by-sa/3.0/es/",
+                "languageCodePrefix": "deed."
+            },
+            "cc-by-sa-3.0-hr": {
+                "msg": "mwe-upwiz-license-cc-by-sa-3.0-hr",
+                "templates": ["cc-by-sa-3.0-hr"],
+                "icons": ["cc-by", "cc-sa"],
+                "url": "//creativecommons.org/licenses/by-sa/3.0/hr/",
+                "languageCodePrefix": "deed."
+            },
+            "cc-by-sa-3.0-lu": {
+                "msg": "mwe-upwiz-license-cc-by-sa-3.0-lu",
+                "templates": ["cc-by-sa-3.0-lu"],
+                "icons": ["cc-by", "cc-sa"],
+                "url": "//creativecommons.org/licenses/by-sa/3.0/lu/",
+                "languageCodePrefix": "deed."
+            },
+            "cc-by-sa-3.0-nl": {
+                "msg": "mwe-upwiz-license-cc-by-sa-3.0-nl",
+                "templates": ["cc-by-sa-3.0-nl"],
+                "icons": ["cc-by", "cc-sa"],
+                "url": "//creativecommons.org/licenses/by-sa/3.0/nl/",
+                "languageCodePrefix": "deed."
+            },
+            "cc-by-sa-3.0-no": {
+                "msg": "mwe-upwiz-license-cc-by-sa-3.0-no",
+                "templates": ["cc-by-sa-3.0-no"],
+                "icons": ["cc-by", "cc-sa"],
+                "url": "//creativecommons.org/licenses/by-sa/3.0/no/",
+                "languageCodePrefix": "deed."
+            },
+            "cc-by-sa-3.0-pl": {
+                "msg": "mwe-upwiz-license-cc-by-sa-3.0-pl",
+                "templates": ["cc-by-sa-3.0-pl"],
+                "icons": ["cc-by", "cc-sa"],
+                "url": "//creativecommons.org/licenses/by-sa/3.0/pl/",
+                "languageCodePrefix": "deed."
+            },
+            "cc-by-sa-3.0-ro": {
+                "msg": "mwe-upwiz-license-cc-by-sa-3.0-ro",
+                "templates": ["cc-by-sa-3.0-ro"],
+                "icons": ["cc-by", "cc-sa"],
+                "url": "//creativecommons.org/licenses/by-sa/3.0/ro/",
+                "languageCodePrefix": "deed."
+            },
+            "cc-by-3.0": {
+                "msg": "mwe-upwiz-license-cc-by-3.0",
+                "icons": ["cc-by"],
+                "url": "//creativecommons.org/licenses/by/3.0/",
+                "languageCodePrefix": "deed."
+            },
+            "cc-zero": {
+                "msg": "mwe-upwiz-license-cc-zero",
+                "icons": ["cc-zero"],
+                "url": "//creativecommons.org/publicdomain/zero/1.0/",
+                "languageCodePrefix": "deed."
+            },
+            "own-pd": {
+                "msg": "mwe-upwiz-license-own-pd",
+                "icons": ["cc-zero"],
+                "templates": ["cc-zero"]
+            },
+            "cc-by-sa-2.5": {
+                "msg": "mwe-upwiz-license-cc-by-sa-2.5",
+                "icons": ["cc-by", "cc-sa"],
+                "url": "//creativecommons.org/licenses/by-sa/2.5/",
+                "languageCodePrefix": "deed."
+            },
+            "cc-by-2.5": {
+                "msg": "mwe-upwiz-license-cc-by-2.5",
+                "icons": ["cc-by"],
+                "url": "//creativecommons.org/licenses/by/2.5/",
+                "languageCodePrefix": "deed."
+            },
+            "cc-by-sa-2.0": {
+                "msg": "mwe-upwiz-license-cc-by-sa-2.0",
+                "icons": ["cc-by", "cc-sa"],
+                "url": "//creativecommons.org/licenses/by-sa/2.0/",
+                "languageCodePrefix": "deed."
+            },
+            "cc-by-2.0": {
+                "msg": "mwe-upwiz-license-cc-by-2.0",
+                "icons": ["cc-by"],
+                "url": "//creativecommons.org/licenses/by/2.0/",
+                "languageCodePrefix": "deed."
+            },
+            "fal": {
+                "msg": "mwe-upwiz-license-fal",
+                "templates": ["FAL"]
+            },
+            "pd-old-100": {
+                "msg": "mwe-upwiz-license-pd-old-100",
+                "templates": ["PD-old-100"]
+            },
+            "pd-old": {
+                "msg": "mwe-upwiz-license-pd-old",
+                "templates": ["PD-old"]
+            },
+            "pd-art": {
+                "msg": "mwe-upwiz-license-pd-art",
+                "templates": ["PD-Art"]
+            },
+            "pd-us": {
+                "msg": "mwe-upwiz-license-pd-us",
+                "templates": ["PD-US"]
+            },
+            "pd-usgov": {
+                "msg": "mwe-upwiz-license-pd-usgov",
+                "templates": ["PD-USGov"]
+            },
+            "pd-usgov-nasa": {
+                "msg": "mwe-upwiz-license-pd-usgov-nasa",
+                "templates": ["PD-USGov-NASA"]
+            },
+            "pd-ineligible": {
+                "msg": "mwe-upwiz-license-pd-ineligible"
+            },
+            "pd-textlogo": {
+                "msg": "mwe-upwiz-license-pd-textlogo",
+                "templates": ["trademarked", "PD-textlogo"]
+            },
+            "attribution": {
+                "msg": "mwe-upwiz-license-attribution"
+            },
+            "gfdl": {
+                "msg": "mwe-upwiz-license-gfdl",
+                "templates": ["GFDL"]
+            },
+            // "none": {
+            //     "msg": "mwe-upwiz-license-none",
+            //     "templates": ["subst:uwl"]
+            // },
+            // "custom": {
+            //     "msg": "mwe-upwiz-license-custom",
+            //     "templates": ["subst:Custom license marker added by UW"],
+            //     "url": "//commons.wikimedia.org/wiki/Commons:Copyright_tags"
+            // }
+        },
         "licenseCategory": "License tags",
         "licenseTagFilters": ["self"],
         "licensing": {
