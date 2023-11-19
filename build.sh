@@ -19,27 +19,12 @@ TARGET_TEMPLATE_PATH=$CURRENT_PATH/templates
 TARGET_STATIC_PATH=$CURRENT_PATH/$STATIC_DIR
 setup (){
     # empty the static directory
-    if [ ! -d "$TARGET_STATIC_PATH" ]; then
-        mkdir $TARGET_STATIC_PATH
+    if [ ! -d "$TEMP_PATH" ]; then
+        mkdir $TEMP_PATH
     fi
-    rm -rf $TARGET_STATIC_PATH/*
+    rm -rf $TEMP_PATH/*
 }
-build_landing_page (){
-    LANDING_PAGE_PATH=$CURRENT_PATH/landing_page
-    LANDING_PAGE_SRC_PATH=$LANDING_PAGE_PATH/src
-    LANDING_PAGE_STATIC_PATH=$LANDING_PAGE_SRC_PATH/static
-    LANDING_PAGE_TEMPATE_PATH=$LANDING_PAGE_SRC_PATH/index.html
-    # Build landing page
-    echo "Building landing page"
-    cd $LANDING_PAGE_PATH
-    yarn run build
-    # Move the build static files to static directory
-    cp -rf $LANDING_PAGE_STATIC_PATH/* $TARGET_STATIC_PATH
-    rm -rf $LANDING_PAGE_STATIC_PATH
-    cp -f $LANDING_PAGE_SRC_PATH/*.html $TARGET_TEMPLATE_PATH
-    cd $CURRENT_PATH
-    echo '  Landing page build completed'
-}
+
 build_frontend (){
     
     BUILD_DIR=build
@@ -65,8 +50,8 @@ build_frontend (){
     #     cp -r $INITIAL_STATIC_FOLDER/* $TARGET_STATIC_PATH
     # fi
     # rm -rf $SOURCE_STATIC_PATH
-    # Move all the files from frontend/build to static directory
-    mv -f $BUILD_PATH/* $TARGET_STATIC_PATH
+    #Move all the files from frontend/build to static directory
+    mv -f $BUILD_PATH/* $TEMP_PATH
     cd $CURRENT_PATH
     # Move the 
     echo "Build completed"
@@ -79,16 +64,16 @@ package () {
         mkdir $TEMP_PATH
     fi
 
-    echo "Copying all the python files"
-    cp *.py  $TEMP_PATH
+    # echo "Copying all the python files"
+    # cp *.py  $TEMP_PATH
     echo "Copying static folder"
     cp -r static $TEMP_PATH
-    echo "Copying templates folder"
-    cp -r $TARGET_TEMPLATE_PATH $TEMP_PATH
-    echo "Copying schema folder"
-    cp -r schema $TEMP_PATH
-    echo "Copying requirements.txt"
-    cp requirements.txt $TEMP_PATH
+    # echo "Copying templates folder"
+    # cp -r $TARGET_TEMPLATE_PATH $TEMP_PATH
+    # echo "Copying schema folder"
+    # cp -r schema $TEMP_PATH
+    # echo "Copying requirements.txt"
+    # cp requirements.txt $TEMP_PATH
     # echo "Copying Bash scripts"
     # cp *.sh $TEMP_PATH
     echo "Copying .env"
@@ -109,7 +94,7 @@ elif [ "$CMD" == "all" ]; then
     setup
     # build_landing_page
     build_frontend
-    package
+    # package
 else
     echo "Please provide a command: setup, frontend , package, all"
 fi
