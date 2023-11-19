@@ -6,9 +6,9 @@ const CampaignDetails = ({ state, dispatch }) => {
         // state.config.title?.length > 0 &&
         // state.config.description?.length > 0 &&
         // state.config.display?.headerLabel?.length > 0 &&
-        state.name?.length > 0 &&
-        state.config.start?.length > 0 &&
-        state.config.end?.length > 0
+        state.name?.length > 0
+        // state.config.start?.length > 0 &&
+        // state.config.end?.length > 0
     )
     return <form>
         <div className="flex flex-col justify-center items-center">
