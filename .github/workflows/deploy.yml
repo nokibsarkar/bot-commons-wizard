@@ -39,25 +39,12 @@ jobs:
         run: |
           cd frontend
           yarn install
-      - name: Build Setup
+      - name: Build
         env:
           CI: false
         run: |
           mkdir -p ${{ vars.LOCAL_TEMP_PATH }}
-          bash build.sh ${{ vars.LOCAL_TEMP_PATH }} setup
-      # - name: Build Landing Page
-      #   env:
-      #     CI: false
-      #   run: |
-      #     bash build.sh ${{ vars.LOCAL_TEMP_PATH }} landing_page
-      - name: Build Frontend
-        env:
-          CI: false
-        run: |
-          bash build.sh ${{ vars.LOCAL_TEMP_PATH }} frontend
-      - name: Package Build
-        run: |
-          bash build.sh ${{ vars.LOCAL_TEMP_PATH }} package
+          bash build.sh ${{ vars.LOCAL_TEMP_PATH }} all
       - name: Setup Deployment Environment
         run: |
           mkdir -p ~/.ssh
