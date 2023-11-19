@@ -67,9 +67,9 @@ jobs:
       - name: Send Build to Server
         run: |
           python3 deploy.py ${{ secrets.SSH_USER }} id_rsa ${{ vars.LOCAL_TEMP_PATH }} ${{ secrets.SSH_REMOTE_PATH }}
-      - name: Restart Gunicorn
-        run: |
-          ssh -i id_rsa "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" "sudo /usr/bin/systemctl restart gunicorn"
+      # - name: Restart Gunicorn
+      #   run: |
+      #     ssh -i id_rsa "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" "sudo /usr/bin/systemctl restart gunicorn"
       - name: Delete SSH Key
         run: |
           rm id_rsa
