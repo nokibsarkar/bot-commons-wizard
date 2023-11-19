@@ -5,20 +5,25 @@ import { act } from 'react-dom/test-utils';
 test('renders without crashing', () => {
   render(<App />);
 });
-test("Render Stepper", async () => {
+test("Render Stepper and clicks all of them ", async () => {
   render(<App />);
   const stepper = screen.getByTestId("stepper");
   expect(stepper).toBeInTheDocument();
-  act(() => {
-    for (let i = 0; i < 6; i++) {
-      const step = screen.getByTestId(`step-${i}`);
-      expect(step).toBeInTheDocument();
-      expect(step).toHaveClass("flex flex-col justify-center items-center text-center rounded-lg p-2 text-white");
+  for(let i = 0; i < 6; i++){
+    const step = screen.getByTestId(`step-${i}`);
+    expect(step).toBeInTheDocument();
+    expect(step).toHaveClass("flex flex-col justify-center items-center text-center rounded-lg p-2 text-white");
+    act(() => {
       step.click();
-      expect(step).toHaveAttribute("data-selected", "true");
+    });
+    expect(step).toHaveAttribute("data-selected", "true");
+    for (let j = 0; j < 6; j++) {
+      if(j !== i){
+        const step = screen.getByTestId(`step-${j}`);
+        expect(step).not.toHaveAttribute("data-selected", "true");
+      }
     }
-
-  });
+  }
 });
 test("Render Campaign Name Input", async () => {
   render(<App />);
