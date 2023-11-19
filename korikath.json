@@ -1,0 +1,63 @@
+{
+    "enabled": true,
+    "title": "Project KoriKath",
+    "autoAdd": {
+        "categories": [
+            "Project_Korikath",
+            "Project_Korikath-All_images",
+            "Project_Korikath-Unreviewed"
+        ],
+        "wikitext": "{{Project_Korikath}}"
+    },
+    "display": {
+        "headerLabel": "{{Project Korikath-Upload Wizard}}",
+        "thanksLabel": "Thanks for uploading."
+    },
+    "tutorial": {
+        "skip": true
+    },
+    "fields": [],
+    "defaults": {
+        "categories": [],
+        "description": ""
+    },
+    "licenseCategory": "License tags",
+    "licenseTagFilters": [
+        "self"
+    ],
+    "licensing": {
+        "defaultType": "ownwork",
+        "ownWorkDefault": "choice",
+        "ownWork": {
+            "type": "or",
+            "template": "self",
+            "licenses": [
+                "cc-by-sa-3.0",
+                "cc-by-3.0",
+                "cc-zero"
+            ],
+            "defaults": [
+                "cc-by-sa-3.0"
+            ]
+        },
+        "thirdParty": {
+            "type": "or",
+            "licenseGroups": [
+                {
+                    "head": "mwe-upwiz-license-cc-head",
+                    "subhead": "mwe-upwiz-license-cc-subhead",
+                    "licenses": [
+                        "cc-by-sa-3.0",
+                        "cc-by-sa-2.5",
+                        "cc-by-3.0",
+                        "cc-by-2.5",
+                        "cc-zero"
+                    ]
+                }
+            ]
+        }
+    },
+    "maxUploads": 100,
+    "enableMultipleFiles": true,
+    "UploadFromUrl": true
+}
