@@ -1,6 +1,6 @@
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, waitForElementToBeRemoved } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
-import setup from './App.test';
+import setup, { testWikiParserInput } from './App.test';
 const setupAndSelectStep = (step = 1) => {
     const utils = setup(step);
     const nextButton = screen.getByTestId("next-button");
@@ -42,23 +42,7 @@ test("Render Tutorial Skippable", async () => {
 });
 test("Render Tutorial Template Name", async () => {
     const { nextButton } = setupAndSelectStep();
-    const templateName = screen.getByTestId("Tutorial Template Name");
-    expect(templateName).toBeInTheDocument();
-    const templateNameLegend = screen.getByTestId("Tutorial Template Name-legend");
-    expect(templateNameLegend).toBeInTheDocument();
-    const templateNameLabel = screen.getByTestId("Tutorial Template Name-helper");
-    expect(templateNameLabel).toBeInTheDocument();
-    expect(templateNameLegend).toHaveTextContent("Tutorial Template Name");
-    const templateNameInput = screen.getByTestId("Tutorial Template Name-input");
-    expect(templateNameInput).toBeInTheDocument();
-    expect(templateNameInput).toHaveAttribute("type", "text");
-    expect(templateNameInput).not.toBeRequired();
-    expect(templateNameInput).not.toBeInvalid();
-    expect(nextButton).not.toBeDisabled();
-    fireEvent.change(templateNameInput, { target: { value: "Test Template" } });
-    expect(templateNameInput.value).toBe("Test Template");
-    expect(templateNameInput).toBeValid();
-    expect(nextButton).not.toBeDisabled();
+    await testWikiParserInput("Tutorial Template Name", "PAGENAME", "Campaign name", nextButton);
 });
 test("render Next Button", async () => {
     const { nextButton, stepper, selectedStep } = setupAndSelectStep();

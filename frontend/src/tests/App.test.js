@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitForElementToBeRemoved } from '@testing-library/react';
 import App from '../App';
 import { act } from 'react-dom/test-utils';
 const setup = (step = null) => {
@@ -19,6 +19,40 @@ const setup = (step = null) => {
     ...utils,
   }
 }
+export const testWikiParserInput = async (fieldName, fieldValue, expectedValue, nextButton) => {
+  const  wikiParserName = screen.getByTestId(fieldName);
+    expect( wikiParserName).toBeInTheDocument();
+    const  wikiParserNameLegend = screen.getByTestId(`${fieldName}-legend`);
+    expect( wikiParserNameLegend).toBeInTheDocument();
+    const  wikiParserNameLabel = screen.getByTestId(`${fieldName}-helper`);
+    expect( wikiParserNameLabel).toBeInTheDocument();
+    expect( wikiParserNameLegend).toHaveTextContent(`${fieldName}`);
+    const  wikiParserNameInput = screen.getByTestId(`${fieldName}-input`);
+    expect( wikiParserNameInput).toBeInTheDocument();
+    expect( wikiParserNameInput).toHaveAttribute("type", "text");
+    fireEvent.change( wikiParserNameInput, { target: { value: "" } });
+    expect( wikiParserNameInput.value).toBe("");
+    expect(screen.getByTestId(`${fieldName}-preview`)).toHaveTextContent("");
+    // const loading = screen.getByTestId(`${fieldName}-loading`);
+    // expect(loading).not.toBeInTheDocument();
+    expect(nextButton).not.toBeDisabled();
+    fireEvent.change( wikiParserNameInput, { target: { value: fieldValue } });
+    expect( wikiParserNameInput.value).toBe(fieldValue);
+    expect( wikiParserNameInput).toBeValid();
+    expect(nextButton).not.toBeDisabled();
+    const previewButton = screen.getByTestId(`${fieldName}-button-submit`);
+    expect(previewButton).toBeInTheDocument();
+    expect(previewButton).toHaveTextContent("Preview");
+    act(() => previewButton.click());
+    const previewLoading = screen.getByTestId(`${fieldName}-loading`);
+    expect(previewLoading).toBeInTheDocument();
+    await waitForElementToBeRemoved(previewLoading, { timeout: 5000 }); // Wait for the preview to load
+    const previewDiv = screen.getByTestId(`${fieldName}-preview`);
+    expect(previewDiv).toBeInTheDocument();
+    expect(previewDiv).toHaveTextContent(expectedValue);
+    // try blank input
+    
+};
 test('renders without crashing', () => {
   setup();
 });
