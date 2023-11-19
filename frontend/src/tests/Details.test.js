@@ -1,10 +1,9 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import App from '../App';
+import { fireEvent, screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import setup from './App.test';
 const setupAndSelectStep = (step = 0) => {
     const utils = setup(step);
-    const nextButton = screen.getByTestId("details-next-button");
+    const nextButton = screen.getByTestId("next-button");
     expect(nextButton).toBeInTheDocument();
     // expect(nextButton).toBeDisabled();
     return {
@@ -154,12 +153,15 @@ test("Render Campaign End Date Input", async () => {
     expect(campaignEndDateInput).not.toHaveFocus();
     expect(nextButton).not.toBeDisabled(); // Because the campaign end date is optional
 });
-test("Render Next Button", async () => {
-    const {nextButton, stepper} =  setupAndSelectStep();
+test("render Next Button", async () => {
+    const { nextButton, stepper, selectedStep } = setupAndSelectStep();
+    expect(nextButton).toBeInTheDocument();
     expect(nextButton).not.toHaveTextContent("");
-    expect(nextButton).toBeEnabled();
+    expect(nextButton).not.toBeDisabled();
+    expect(stepper).toBeInTheDocument();
+    const nextStep = stepper.children[1];
     act(() => nextButton.click());
     expect(nextButton).not.toBeInTheDocument();
-    const nextStep = stepper.children[1];
+    expect(selectedStep).toHaveAttribute("data-selected", "false");
     expect(nextStep).toHaveAttribute("data-selected", "true");
 });

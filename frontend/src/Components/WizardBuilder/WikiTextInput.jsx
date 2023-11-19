@@ -28,7 +28,7 @@ const WikiTextParser = ({ onChooseTemplate, campaignName, defaultValue = '', des
         })
     }, [wikitext, loading, formatter]);
     return (
-        <fieldset className="flex flex-col items-center border-solid border border-gray-600 p-1">
+        <fieldset data-testid={fieldName} className="flex flex-col items-center border-solid border border-gray-600 p-1">
             <legend className="text-lg" data-testid={`${fieldName}-legend`}>{fieldName}</legend>
             <p className="text-gray-400" data-testid={`${fieldName}-helper`}>{description}</p>
             <div className="flex flex-row justify-center items-center">

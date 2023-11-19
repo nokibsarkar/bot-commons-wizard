@@ -40,7 +40,7 @@ const CampaignDetails = ({ state, dispatch }) => {
                     className="border border-gray-400 rounded-lg px-4 py-2 m-2"
                     type="date" value={state.endDate} onChange={(e) => dispatch({ type: "config.end", payload: e.target.value })} />
             </fieldset>
-            <button data-testid="details-next-button" type="button" disabled={!readyToGotNext} className="border disabled:bg-opacity-70 text-white bg-green-700 w-1/2 border-gray-400 rounded-lg px-4 py-2 m-2" onClick={() => dispatch({ type: "step", payload: 1 })}>
+            <button data-testid="next-button" type="button" disabled={!readyToGotNext} className="border disabled:bg-opacity-70 text-white bg-green-700 w-1/2 border-gray-400 rounded-lg px-4 py-2 m-2" onClick={() => dispatch({ type: "step", payload: 1 })}>
                 Add Tutorial Settings
             </button>
         </div>

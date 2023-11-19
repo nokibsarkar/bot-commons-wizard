@@ -14,7 +14,7 @@ const TutorialPage = ({ state, dispatch, config, dispatchConfig }) => {
                 <label htmlFor="width">Width of the tutorial</label>
                 <input type="number" value={state.config.tutorial.width} onChange={(e) => dispatch({ type: "config.tutorial.width", payload: e.target.value })} id="width" />
             </fieldset> */}
-            <button type="button" className="border min-w-full bg-green-700 text-white disabled:bg-opacity-50 rounded-lg px-3 py-2 mt-3" onClick={() => dispatch({ type: "step", payload: 2 })}>
+            <button data-testid="next-button" type="button" className="border min-w-full bg-green-700 text-white disabled:bg-opacity-50 rounded-lg px-3 py-2 mt-3" onClick={() => dispatch({ type: "step", payload: 2 })}>
                 Add Some Predefined Parameters
             </button>
         </div>
