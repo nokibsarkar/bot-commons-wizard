@@ -39,6 +39,15 @@ jobs:
         run: |
           cd frontend
           yarn install
+      - name: Test
+        run: |
+          cd frontend
+          yarn test --coverage --watchAll=false
+          cd ..
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       - name: Build
         env:
           CI: false
