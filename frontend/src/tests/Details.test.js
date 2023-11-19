@@ -22,20 +22,46 @@ test("Render Campaign Name Input", async () => {
     expect(campaignNameInput).not.toHaveFocus();
 });
 test("Render Campaign Title Input", async () => {
+    const testCampaignName = "Test Campaign";
     setup(0);
-    const campaignTitle = screen.getByText("Title")
+    const campaignTitle = screen.getByText("Title");
     expect(campaignTitle).toBeInTheDocument();
     const campaignTitleLegend = screen.getByTestId("Title-legend");
     expect(campaignTitleLegend).toBeInTheDocument();
-    // const campaignTitleLabel = screen.getByTestId("campaign-title-helper");
-    // expect(campaignTitleLabel).toBeInTheDocument();
+    const campaignTitleLabel = screen.getByTestId("Title-helper");
+    expect(campaignTitleLabel).toBeInTheDocument();
     
-    // expect(campaignTitleLegend).toHaveTextContent("Campaign Title");
-    // const campaignTitleInput = screen.getByTestId("campaign-title-input");
-    // expect(campaignTitleInput).toBeInTheDocument();
-    // expect(campaignTitleInput).toHaveAttribute("type", "text");
-    // campaignTitleInput.focus();
-    // expect(campaignTitleInput).toHaveFocus();
-    // campaignTitleInput.blur();
-    // expect(campaignTitleInput).not.toHaveFocus();
+    expect(campaignTitleLegend).toHaveTextContent("Title");
+    const campaignTitleInput = screen.getByTestId("Title-input");
+    expect(campaignTitleInput).toBeInTheDocument();
+    expect(campaignTitleInput).toHaveAttribute("type", "text");
+    const campaignNameInput = screen.getByTestId("campaign-name-input");
+    fireEvent.change(campaignNameInput, { target: { value: testCampaignName } });
+    expect(campaignNameInput.value).toBe(testCampaignName);
+    expect(campaignTitleInput).toHaveAttribute("placeholder", `Default is "${testCampaignName}"`);
+    campaignTitleInput.focus();
+    expect(campaignTitleInput).toHaveFocus();
+    fireEvent.change(campaignTitleInput, { target: { value: testCampaignName } });
+    expect(campaignTitleInput.value).toBe(testCampaignName);
+    campaignTitleInput.blur();
+    expect(campaignTitleInput).not.toHaveFocus();
+});
+test("Render Campaign Description Input", async () => {
+    setup(0);
+    const campaignDescription = screen.getByText("Description")
+    expect(campaignDescription).toBeInTheDocument();
+    const campaignDescriptionLegend = screen.getByTestId("Description-legend");
+    expect(campaignDescriptionLegend).toBeInTheDocument();
+    const campaignDescriptionLabel = screen.getByTestId("Description-helper");
+    expect(campaignDescriptionLabel).toBeInTheDocument();
+    expect(campaignDescriptionLegend).toHaveTextContent("Description");
+    const campaignDescriptionInput = screen.getByTestId("Description-input");
+    expect(campaignDescriptionInput).toBeInTheDocument();
+    expect(campaignDescriptionInput).toHaveAttribute("type", "text");
+    campaignDescriptionInput.focus();
+    expect(campaignDescriptionInput).toHaveFocus();
+    fireEvent.change(campaignDescriptionInput, { target: { value: "Any Campaign Description" } });
+    expect(campaignDescriptionInput.value).toBe("Any Campaign Description");
+    campaignDescriptionInput.blur();
+    expect(campaignDescriptionInput).not.toHaveFocus();
 });
