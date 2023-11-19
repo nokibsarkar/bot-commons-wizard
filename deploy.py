@@ -1,8 +1,8 @@
 from pysftp import Connection, CnOpts
 import os, sys
-HOST='tools.wikilovesfolklore.org'
+HOST='login.toolforge.org'
 
-DEFAULT_PATH='/home/listgen/listgen'
+DEFAULT_PATH='/data/project/wizamp/public_html'
 def upload_recurively(conn : Connection, local_path, remote_path):
     if os.path.isdir(local_path):
         if not conn.exists(remote_path):

@@ -1,0 +1,79 @@
+name: "Deploy to Server"
+run-name: "Deploying the build to the server"
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: Production
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Pysftp
+        run: |
+          pip3 install pysftp
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.14.x'
+          cache: 'npm'
+          cache-dependency-path: |
+            frontend/package-lock.json
+            landing_page/package-lock.json
+      - name: Cache node modules
+        id: cache-npm
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: |
+            landing_page/node_modules
+            frontend/node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        name: Install dependencies
+        run: |
+          cd frontend
+          npm install
+          cd ../landing_page
+          npm install
+      - name: Build Setup
+        env:
+          CI: false
+        run: |
+          mkdir -p ${{ vars.LOCAL_TEMP_PATH }}
+          bash build.sh ${{ vars.LOCAL_TEMP_PATH }} setup
+      - name: Build Landing Page
+        env:
+          CI: false
+        run: |
+          bash build.sh ${{ vars.LOCAL_TEMP_PATH }} landing_page
+      - name: Build Frontend
+        env:
+          CI: false
+        run: |
+          bash build.sh ${{ vars.LOCAL_TEMP_PATH }} frontend
+      - name: Package Build
+        run: |
+          bash build.sh ${{ vars.LOCAL_TEMP_PATH }} package
+      - name: Setup Deployment Environment
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan tools.wikilovesfolklore.org >> ~/.ssh/known_hosts
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > id_rsa
+          chmod 600 id_rsa
+      - name: Send Build to Server
+        run: |
+          python3 deploy.py ${{ secrets.SSH_USER }} id_rsa ${{ vars.LOCAL_TEMP_PATH }} ${{ secrets.SSH_REMOTE_PATH }}
+      # - name: Restart Gunicorn
+      #   run: |
+      #     ssh -i id_rsa "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" "sudo /usr/bin/systemctl restart gunicorn"
+      - name: Delete SSH Key
+        run: |
+          rm id_rsa
