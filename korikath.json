@@ -21,10 +21,6 @@
         "categories": [],
         "description": ""
     },
-    "licenseCategory": "License tags",
-    "licenseTagFilters": [
-        "self"
-    ],
     "licensing": {
         "defaultType": "ownwork",
         "ownWorkDefault": "choice",
@@ -32,12 +28,13 @@
             "type": "or",
             "template": "self",
             "licenses": [
-                "cc-by-sa-3.0",
-                "cc-by-3.0",
-                "cc-zero"
+                "cc-zero",
+                "cc-by-4.0",
+                "cc-by-sa-4.0",
+                "own-pd"
             ],
             "defaults": [
-                "cc-by-sa-3.0"
+                "cc-by-sa-4.0"
             ]
         },
         "thirdParty": {
@@ -47,17 +44,41 @@
                     "head": "mwe-upwiz-license-cc-head",
                     "subhead": "mwe-upwiz-license-cc-subhead",
                     "licenses": [
+                        "cc-sa-4.0",
                         "cc-by-sa-3.0",
                         "cc-by-sa-2.5",
                         "cc-by-3.0",
+                        "cc-zero",
+                        "cc-by-sa-3.0-gfdl",
+                        "cc-by-sa-3.0-at",
+                        "cc-by-sa-3.0-de",
+                        "cc-by-sa-3.0-ee",
+                        "cc-by-sa-3.0-es",
+                        "cc-by-sa-3.0-hr",
+                        "cc-by-sa-3.0-lu",
+                        "cc-by-sa-3.0-nl",
+                        "cc-by-sa-3.0-no",
+                        "cc-by-sa-3.0-pl",
+                        "cc-by-sa-3.0-ro",
+                        "cc-by-3.0",
+                        "cc-by-sa-2.5",
                         "cc-by-2.5",
-                        "cc-zero"
+                        "cc-by-sa-2.0",
+                        "cc-by-2.0",
+                        "fal",
+                        "pd-old-100",
+                        "pd-old",
+                        "pd-art",
+                        "pd-us",
+                        "pd-usgov",
+                        "pd-usgov-nasa",
+                        "pd-ineligible",
+                        "pd-textlogo",
+                        "attribution",
+                        "gfdl"
                     ]
                 }
             ]
         }
-    },
-    "maxUploads": 100,
-    "enableMultipleFiles": true,
-    "UploadFromUrl": true
+    }
 }
